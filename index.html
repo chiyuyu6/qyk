@@ -71,7 +71,7 @@
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            timerEl.innerHTML = `${d}天 ${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            timerEl.innerHTML = `${d}天 ${h}时${m}分${s}秒`;
         }
 
         function launchFireworks() {
