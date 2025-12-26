@@ -43,6 +43,37 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
+        // 1. 初始化音频基础组件
+const listener = new THREE.AudioListener();
+camera.add(listener); // 必须将监听器绑定到相机
+
+const bgm = new THREE.Audio(listener);
+const audioLoader = new THREE.AudioLoader();
+
+// 2. 你的音乐直链
+const BGM_URL = 'https://music.163.com/song/media/outer/url?id=418603077.mp3';
+
+// 3. 执行加载
+audioLoader.load(BGM_URL, (buffer) => {
+    bgm.setBuffer(buffer);
+    bgm.setLoop(true);     // 循环播放
+    bgm.setVolume(0.4);    // 设置适中音量
+    console.log("音频预加载完成！");
+    
+    // 在状态栏提示用户
+    const statusBar = document.getElementById('status-bar');
+    if(statusBar) statusBar.innerText = "🎶 准备就绪，点击屏幕开启圣诞之旅";
+});
+
+// 4. 关键：解决浏览器禁止自动播放的问题
+// 监听全局点击事件，点击后立刻播放
+window.addEventListener('click', () => {
+    if (bgm.buffer && !bgm.isPlaying) {
+        bgm.play();
+        console.log("音乐开始播放");
+    }
+}, { once: true }); // 只触发一次
+
         const timerEl = document.getElementById('timer');
         const headEl = document.getElementById('headline');
         const music = document.getElementById('bg-music');
