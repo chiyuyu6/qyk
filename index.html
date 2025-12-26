@@ -42,7 +42,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <script>
+    <script
         // 1. 初始化音频基础组件
 const listener = new THREE.AudioListener();
 camera.add(listener); // 必须将监听器绑定到相机
@@ -72,7 +72,7 @@ window.addEventListener('click', () => {
         bgm.play();
         console.log("音乐开始播放");
     }
-}, { once: true }); // 只触发一次
+}, { once: true }); // 只触发一次>
 
         const timerEl = document.getElementById('timer');
         const headEl = document.getElementById('headline');
